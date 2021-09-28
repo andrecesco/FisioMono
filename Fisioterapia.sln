@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31605.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fisioterapia.Web", "Fisioterapia.Web\Fisioterapia.Web.csproj", "{BFA5A6D3-A871-41C0-8D82-A833F265EA76}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fisioterapia.Domain", "Fisioterapia.Domain\Fisioterapia.Domain.csproj", "{D237DDC8-E135-4C54-A9F1-28800FD54B24}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fisioterapia.Data", "Fisioterapia.Data\Fisioterapia.Data.csproj", "{1827EF3C-A1D6-4EA7-9915-220FDE0C40FD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fisioterapia.Core", "Fisioterapia.Core\Fisioterapia.Core.csproj", "{F2C3FB5D-06EF-41B3-8676-A5700AE5F3A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fisioterapia.Test", "Fisioterapia.Test\Fisioterapia.Test.csproj", "{B7A3C61E-8C5A-414C-9AD8-007CB5D80D92}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BFA5A6D3-A871-41C0-8D82-A833F265EA76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFA5A6D3-A871-41C0-8D82-A833F265EA76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFA5A6D3-A871-41C0-8D82-A833F265EA76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFA5A6D3-A871-41C0-8D82-A833F265EA76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D237DDC8-E135-4C54-A9F1-28800FD54B24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D237DDC8-E135-4C54-A9F1-28800FD54B24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D237DDC8-E135-4C54-A9F1-28800FD54B24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D237DDC8-E135-4C54-A9F1-28800FD54B24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1827EF3C-A1D6-4EA7-9915-220FDE0C40FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1827EF3C-A1D6-4EA7-9915-220FDE0C40FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1827EF3C-A1D6-4EA7-9915-220FDE0C40FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1827EF3C-A1D6-4EA7-9915-220FDE0C40FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2C3FB5D-06EF-41B3-8676-A5700AE5F3A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2C3FB5D-06EF-41B3-8676-A5700AE5F3A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2C3FB5D-06EF-41B3-8676-A5700AE5F3A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2C3FB5D-06EF-41B3-8676-A5700AE5F3A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7A3C61E-8C5A-414C-9AD8-007CB5D80D92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7A3C61E-8C5A-414C-9AD8-007CB5D80D92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7A3C61E-8C5A-414C-9AD8-007CB5D80D92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7A3C61E-8C5A-414C-9AD8-007CB5D80D92}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C548C1A4-2B0C-46D4-B60E-B9F4B23D2998}
+	EndGlobalSection
+EndGlobal
