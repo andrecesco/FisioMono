@@ -13,10 +13,6 @@ namespace Fisioterapia.Core.DomainObjects
         public DateTime? DataAlteracao { get; private set; }
         public DateTime? DataDelecao { get; private set; }
 
-
-        private List<Event> _notificacoes;
-        public IReadOnlyCollection<Event> Notificacoes => _notificacoes?.AsReadOnly();
-
         public Entity()
         {
             Id = Guid.NewGuid();

@@ -1,11 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Fisioterapia.Web.Pages
 {
@@ -24,9 +20,10 @@ namespace Fisioterapia.Web.Pages
             _logger = logger;
         }
 
-        public void OnGet()
+        public void OnGet(int id)
         {
             RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
+            _logger.LogError(HttpContext.TraceIdentifier);
         }
     }
 }

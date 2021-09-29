@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fisioterapia.Data", "Fisiot
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fisioterapia.Core", "Fisioterapia.Core\Fisioterapia.Core.csproj", "{F2C3FB5D-06EF-41B3-8676-A5700AE5F3A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fisioterapia.Test", "Fisioterapia.Test\Fisioterapia.Test.csproj", "{B7A3C61E-8C5A-414C-9AD8-007CB5D80D92}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fisioterapia.Test", "Fisioterapia.Test\Fisioterapia.Test.csproj", "{B7A3C61E-8C5A-414C-9AD8-007CB5D80D92}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
