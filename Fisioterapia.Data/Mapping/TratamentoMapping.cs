@@ -24,11 +24,12 @@ namespace Fisioterapia.Data.Mapping
             builder.Property(a => a.DataAlteracao)
                 .HasColumnType("datetime");
 
-            builder.HasMany(a => a.CondutaTratamentos)
+            builder
+                .HasMany(a => a.CondutaTratamentos)
                 .WithOne(a => a.Tratamento)
                 .HasForeignKey(a => a.TratamentoId);
 
-            builder.ToTable("Tratamento");
+            builder.ToTable("Tratamentos");
         }
     }
 }

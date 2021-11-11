@@ -1,6 +1,4 @@
-﻿using Fisioterapia.Core.Messages;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Fisioterapia.Core.DomainObjects
@@ -10,8 +8,8 @@ namespace Fisioterapia.Core.DomainObjects
         [Key]
         public Guid Id { get; set; }
         public DateTime DataCriacao { get; set; }
-        public DateTime? DataAlteracao { get; private set; }
-        public DateTime? DataDelecao { get; private set; }
+        public DateTime? DataAlteracao { get; set; }
+        public DateTime? DataDelecao { get; set; }
 
         public Entity()
         {

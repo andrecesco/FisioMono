@@ -27,16 +27,16 @@ namespace Fisioterapia.Data.Mapping
                 .HasColumnType("datetime");
 
             builder
-                .HasOne(a => a.Tratamento)
-                .WithMany(a => a.CondutaTratamentos)
-                .HasForeignKey(a => a.TratamentoId);
-
-            builder
                 .HasOne(a => a.Conduta)
                 .WithMany(a => a.CondutaTratamentos)
                 .HasForeignKey(a => a.CondutaId);
 
-            builder.ToTable("CondutaTratamento");
+            builder
+                .HasOne(a => a.Tratamento)
+                .WithMany(a => a.CondutaTratamentos)
+                .HasForeignKey(a => a.TratamentoId);
+
+            builder.ToTable("CondutaTratamentos");
         }
     }
 }

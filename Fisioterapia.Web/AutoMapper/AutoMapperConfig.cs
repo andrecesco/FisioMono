@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Fisioterapia.Domain.Models;
+using Fisioterapia.Web.ViewModels;
 
 namespace Fisioterapia.Web.AutoMapper
 {
@@ -6,7 +8,9 @@ namespace Fisioterapia.Web.AutoMapper
     {
         public AutoMapperConfig()
         {
-
+            CreateMap<Tratamento, TratamentoViewModel>().ReverseMap();
+            CreateMap<Paciente, PacienteViewModel>().ReverseMap();
+            CreateMap<Anamnese, AnamneseViewModel>().ReverseMap();
         }
     }
 }

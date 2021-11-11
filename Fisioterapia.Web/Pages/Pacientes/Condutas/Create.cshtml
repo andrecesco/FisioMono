@@ -1,0 +1,35 @@
+@page
+@model Fisioterapia.Web.Pages.Condutas.CreateModel
+
+@{
+    ViewData["Title"] = "Nova Conduta";
+}
+
+<h1>Nova conduta</h1>
+
+<h4>@Model.CondutaViewModel.Paciente.NomeCompleto</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CondutaViewModel.Descricao" class="control-label"></label>
+                <input asp-for="CondutaViewModel.Descricao" class="form-control" />
+                <span asp-validation-for="CondutaViewModel.Descricao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="CondutaViewModel.PacienteId" />
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,62 @@
+@page
+@model Fisioterapia.Web.Pages.Pacientes.EditModel
+
+@{
+    ViewData["Title"] = "Alterar Paciente";
+    ViewData["ActivePage"] = ManageNavPages.Edit;
+    Layout = "/Pages/Pacientes/_Layout.cshtml";
+}
+
+<h4>@ViewData["Title"]</h4>
+<hr />
+<partial name="_StatusMessage" for="StatusMessage" />
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="PacienteViewModel.Documento" class="control-label"></label>
+                <input asp-for="PacienteViewModel.Documento" class="form-control" />
+                <span asp-validation-for="PacienteViewModel.Documento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PacienteViewModel.NomeCompleto" class="control-label"></label>
+                <input asp-for="PacienteViewModel.NomeCompleto" class="form-control" />
+                <span asp-validation-for="PacienteViewModel.NomeCompleto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PacienteViewModel.Email" class="control-label"></label>
+                <input asp-for="PacienteViewModel.Email" class="form-control" />
+                <span asp-validation-for="PacienteViewModel.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PacienteViewModel.Telefone" class="control-label"></label>
+                <input asp-for="PacienteViewModel.Telefone" class="form-control" />
+                <span asp-validation-for="PacienteViewModel.Telefone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PacienteViewModel.Celular" class="control-label"></label>
+                <input asp-for="PacienteViewModel.Celular" class="form-control" />
+                <span asp-validation-for="PacienteViewModel.Celular" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PacienteViewModel.DataNascimento" class="control-label"></label>
+                <input asp-for="PacienteViewModel.DataNascimento" class="form-control" />
+                <span asp-validation-for="PacienteViewModel.DataNascimento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PacienteViewModel.Profissao" class="control-label"></label>
+                <input asp-for="PacienteViewModel.Profissao" class="form-control" />
+                <span asp-validation-for="PacienteViewModel.Profissao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="PacienteViewModel.Id" />
+                <input type="submit" value="Alterar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

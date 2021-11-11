@@ -32,7 +32,7 @@ namespace Fisioterapia.Data.Mapping
                 .WithMany(a => a.Convenios)
                 .HasForeignKey(a => a.PacienteId);
 
-            builder.ToTable("Convenio");
+            builder.ToTable("Convenios");
         }
     }
 }

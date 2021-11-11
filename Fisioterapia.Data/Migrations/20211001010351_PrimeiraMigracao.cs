@@ -8,7 +8,7 @@ namespace Fisioterapia.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Paciente",
+                name: "Pacientes",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -26,11 +26,11 @@ namespace Fisioterapia.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Paciente", x => x.Id);
+                    table.PrimaryKey("PK_Pacientes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Anamnese",
+                name: "Anamneses",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -57,17 +57,17 @@ namespace Fisioterapia.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Anamnese", x => x.Id);
+                    table.PrimaryKey("PK_Anamneses", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Anamnese_Paciente_PacienteId",
+                        name: "FK_Anamneses_Pacientes_PacienteId",
                         column: x => x.PacienteId,
-                        principalTable: "Paciente",
+                        principalTable: "Pacientes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Conduta",
+                name: "Condutas",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -79,17 +79,17 @@ namespace Fisioterapia.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Conduta", x => x.Id);
+                    table.PrimaryKey("PK_Condutas", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Conduta_Paciente_PacienteId",
+                        name: "FK_Condutas_Pacientes_PacienteId",
                         column: x => x.PacienteId,
-                        principalTable: "Paciente",
+                        principalTable: "Pacientes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Convenio",
+                name: "Convenios",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -103,17 +103,17 @@ namespace Fisioterapia.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Convenio", x => x.Id);
+                    table.PrimaryKey("PK_Convenios", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Convenio_Paciente_PacienteId",
+                        name: "FK_Convenios_Pacientes_PacienteId",
                         column: x => x.PacienteId,
-                        principalTable: "Paciente",
+                        principalTable: "Pacientes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Endereco",
+                name: "Enderecos",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -131,17 +131,17 @@ namespace Fisioterapia.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Endereco", x => x.Id);
+                    table.PrimaryKey("PK_Enderecos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Endereco_Paciente_PacienteId",
+                        name: "FK_Enderecos_Pacientes_PacienteId",
                         column: x => x.PacienteId,
-                        principalTable: "Paciente",
+                        principalTable: "Pacientes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tratamento",
+                name: "Tratamentos",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -153,17 +153,17 @@ namespace Fisioterapia.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tratamento", x => x.Id);
+                    table.PrimaryKey("PK_Tratamentos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Tratamento_Conduta_CondutaId",
+                        name: "FK_Tratamentos_Condutas_CondutaId",
                         column: x => x.CondutaId,
-                        principalTable: "Conduta",
+                        principalTable: "Condutas",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "CondutaTratamento",
+                name: "CondutaTratamentos",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -175,80 +175,80 @@ namespace Fisioterapia.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CondutaTratamento", x => x.Id);
+                    table.PrimaryKey("PK_CondutaTratamentos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CondutaTratamento_Conduta_CondutaId",
+                        name: "FK_CondutaTratamentos_Condutas_CondutaId",
                         column: x => x.CondutaId,
-                        principalTable: "Conduta",
+                        principalTable: "Condutas",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CondutaTratamento_Tratamento_TratamentoId",
+                        name: "FK_CondutaTratamentos_Tratamentos_TratamentoId",
                         column: x => x.TratamentoId,
-                        principalTable: "Tratamento",
+                        principalTable: "Tratamentos",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Anamnese_PacienteId",
-                table: "Anamnese",
+                name: "IX_Anamneses_PacienteId",
+                table: "Anamneses",
                 column: "PacienteId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Conduta_PacienteId",
-                table: "Conduta",
+                name: "IX_Condutas_PacienteId",
+                table: "Condutas",
                 column: "PacienteId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CondutaTratamento_CondutaId",
-                table: "CondutaTratamento",
+                name: "IX_CondutaTratamentos_CondutaId",
+                table: "CondutaTratamentos",
                 column: "CondutaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CondutaTratamento_TratamentoId",
-                table: "CondutaTratamento",
+                name: "IX_CondutaTratamentos_TratamentoId",
+                table: "CondutaTratamentos",
                 column: "TratamentoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Convenio_PacienteId",
-                table: "Convenio",
+                name: "IX_Convenios_PacienteId",
+                table: "Convenios",
                 column: "PacienteId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Endereco_PacienteId",
-                table: "Endereco",
+                name: "IX_Enderecos_PacienteId",
+                table: "Enderecos",
                 column: "PacienteId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tratamento_CondutaId",
-                table: "Tratamento",
+                name: "IX_Tratamentos_CondutaId",
+                table: "Tratamentos",
                 column: "CondutaId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Anamnese");
+                name: "Anamneses");
 
             migrationBuilder.DropTable(
-                name: "CondutaTratamento");
+                name: "CondutaTratamentos");
 
             migrationBuilder.DropTable(
-                name: "Convenio");
+                name: "Convenios");
 
             migrationBuilder.DropTable(
-                name: "Endereco");
+                name: "Enderecos");
 
             migrationBuilder.DropTable(
-                name: "Tratamento");
+                name: "Tratamentos");
 
             migrationBuilder.DropTable(
-                name: "Conduta");
+                name: "Condutas");
 
             migrationBuilder.DropTable(
-                name: "Paciente");
+                name: "Pacientes");
         }
     }
 }

@@ -1,0 +1,108 @@
+@page
+@model Fisioterapia.Web.Pages.Pacientes.EditAnamneseModel
+
+@{
+    ViewData["Title"] = "Alterar Anamnese";
+    ViewData["ActivePage"] = ManageNavPages.Anamnese;
+    Layout = "/Pages/Pacientes/_Layout.cshtml";
+}
+
+<h4>@ViewData["Title"]</h4>
+<hr />
+<partial name="_StatusMessage" for="StatusMessage" />
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="AnamneseViewModel.QP" class="control-label"></label>
+                <input asp-for="AnamneseViewModel.QP" class="form-control" />
+                <span asp-validation-for="AnamneseViewModel.QP" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnamneseViewModel.Investigacao" class="control-label"></label>
+                <input asp-for="AnamneseViewModel.Investigacao" class="form-control" />
+                <span asp-validation-for="AnamneseViewModel.Investigacao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnamneseViewModel.HPM" class="control-label"></label>
+                <input asp-for="AnamneseViewModel.HPM" class="form-control" />
+                <span asp-validation-for="AnamneseViewModel.HPM" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnamneseViewModel.PressaoAlta" class="control-label"></label>
+                <input asp-for="AnamneseViewModel.PressaoAlta" class="form-control" />
+                <span asp-validation-for="AnamneseViewModel.PressaoAlta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnamneseViewModel.MedicamentoParaPressao" class="control-label"></label>
+                <input asp-for="AnamneseViewModel.MedicamentoParaPressao" class="form-control" />
+                <span asp-validation-for="AnamneseViewModel.MedicamentoParaPressao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnamneseViewModel.PraticaAtividadeFisica" class="control-label"></label>
+                <input asp-for="AnamneseViewModel.PraticaAtividadeFisica" class="form-control" />
+                <span asp-validation-for="AnamneseViewModel.PraticaAtividadeFisica" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnamneseViewModel.NomeAtividadeFisica" class="control-label"></label>
+                <input asp-for="AnamneseViewModel.NomeAtividadeFisica" class="form-control" />
+                <span asp-validation-for="AnamneseViewModel.NomeAtividadeFisica" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnamneseViewModel.ExameFisioPostural" class="control-label"></label>
+                <input asp-for="AnamneseViewModel.ExameFisioPostural" class="form-control" />
+                <span asp-validation-for="AnamneseViewModel.ExameFisioPostural" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnamneseViewModel.ConsumeSubstancias" class="control-label"></label>
+                <input asp-for="AnamneseViewModel.ConsumeSubstancias" class="form-control" />
+                <span asp-validation-for="AnamneseViewModel.ConsumeSubstancias" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnamneseViewModel.AlgiaPalpacao" class="control-label"></label>
+                <input asp-for="AnamneseViewModel.AlgiaPalpacao" class="form-control" />
+                <span asp-validation-for="AnamneseViewModel.AlgiaPalpacao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnamneseViewModel.TonusMuscular" class="control-label"></label>
+                <input asp-for="AnamneseViewModel.TonusMuscular" class="form-control" />
+                <span asp-validation-for="AnamneseViewModel.TonusMuscular" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnamneseViewModel.HipotrofiaMuscular" class="control-label"></label>
+                <input asp-for="AnamneseViewModel.HipotrofiaMuscular" class="form-control" />
+                <span asp-validation-for="AnamneseViewModel.HipotrofiaMuscular" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnamneseViewModel.ContraturaMuscular" class="control-label"></label>
+                <input asp-for="AnamneseViewModel.ContraturaMuscular" class="form-control" />
+                <span asp-validation-for="AnamneseViewModel.ContraturaMuscular" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnamneseViewModel.ContraturaMuscularObservacao" class="control-label"></label>
+                <input asp-for="AnamneseViewModel.ContraturaMuscularObservacao" class="form-control" />
+                <span asp-validation-for="AnamneseViewModel.ContraturaMuscularObservacao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnamneseViewModel.RetracaoMuscular" class="control-label"></label>
+                <input asp-for="AnamneseViewModel.RetracaoMuscular" class="form-control" />
+                <span asp-validation-for="AnamneseViewModel.RetracaoMuscular" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnamneseViewModel.RetracaoMuscularObservacao" class="control-label"></label>
+                <input asp-for="AnamneseViewModel.RetracaoMuscularObservacao" class="form-control" />
+                <span asp-validation-for="AnamneseViewModel.RetracaoMuscularObservacao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="AnamneseViewModel.Id" />
+                <input type="hidden" asp-for="AnamneseViewModel.PacienteId" />
+                <input type="submit" value="Alterar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

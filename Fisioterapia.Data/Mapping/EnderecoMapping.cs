@@ -54,7 +54,7 @@ namespace Fisioterapia.Data.Mapping
                 .WithMany(a => a.Enderecos)
                 .HasForeignKey(a => a.PacienteId);
 
-            builder.ToTable("Endereco");
+            builder.ToTable("Enderecos");
         }
     }
 }

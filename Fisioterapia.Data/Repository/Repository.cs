@@ -65,7 +65,7 @@ namespace Fisioterapia.Data.Repository
             entity
                 .GetType()
                 .GetProperty("DataDelecao")
-                .SetValue("DataDelecao", DateTime.Now);
+                .SetValue(entity, DateTime.Now);
 
             DbSet.Update(entity);
             await SaveChanges();
@@ -76,9 +76,9 @@ namespace Fisioterapia.Data.Repository
             foreach (var entity in entities)
             {
                 entity
-                   .GetType()
-                   .GetProperty("DataDelecao")
-                   .SetValue("DataDelecao", DateTime.Now);
+                    .GetType()
+                    .GetProperty("DataDelecao")
+                    .SetValue(entity, DateTime.Now);
             }
 
             DbSet.UpdateRange(entities);

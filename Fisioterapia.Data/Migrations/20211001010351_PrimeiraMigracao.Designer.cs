@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fisioterapia.Data.Migrations
 {
     [DbContext(typeof(FisioterapiaDbContext))]
-    [Migration("20210928135730_PrimeiraMigracao")]
+    [Migration("20211001010351_PrimeiraMigracao")]
     partial class PrimeiraMigracao
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -92,7 +92,7 @@ namespace Fisioterapia.Data.Migrations
                     b.HasIndex("PacienteId")
                         .IsUnique();
 
-                    b.ToTable("Anamnese");
+                    b.ToTable("Anamneses");
                 });
 
             modelBuilder.Entity("Fisioterapia.Domain.Models.Conduta", b =>
@@ -121,7 +121,7 @@ namespace Fisioterapia.Data.Migrations
 
                     b.HasIndex("PacienteId");
 
-                    b.ToTable("Conduta");
+                    b.ToTable("Condutas");
                 });
 
             modelBuilder.Entity("Fisioterapia.Domain.Models.CondutaTratamento", b =>
@@ -151,7 +151,7 @@ namespace Fisioterapia.Data.Migrations
 
                     b.HasIndex("TratamentoId");
 
-                    b.ToTable("CondutaTratamento");
+                    b.ToTable("CondutaTratamentos");
                 });
 
             modelBuilder.Entity("Fisioterapia.Domain.Models.Convenio", b =>
@@ -186,7 +186,7 @@ namespace Fisioterapia.Data.Migrations
 
                     b.HasIndex("PacienteId");
 
-                    b.ToTable("Convenio");
+                    b.ToTable("Convenios");
                 });
 
             modelBuilder.Entity("Fisioterapia.Domain.Models.Endereco", b =>
@@ -238,7 +238,7 @@ namespace Fisioterapia.Data.Migrations
 
                     b.HasIndex("PacienteId");
 
-                    b.ToTable("Endereco");
+                    b.ToTable("Enderecos");
                 });
 
             modelBuilder.Entity("Fisioterapia.Domain.Models.Paciente", b =>
@@ -284,7 +284,7 @@ namespace Fisioterapia.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Paciente");
+                    b.ToTable("Pacientes");
                 });
 
             modelBuilder.Entity("Fisioterapia.Domain.Models.Tratamento", b =>
@@ -313,7 +313,7 @@ namespace Fisioterapia.Data.Migrations
 
                     b.HasIndex("CondutaId");
 
-                    b.ToTable("Tratamento");
+                    b.ToTable("Tratamentos");
                 });
 
             modelBuilder.Entity("Fisioterapia.Domain.Models.Anamnese", b =>

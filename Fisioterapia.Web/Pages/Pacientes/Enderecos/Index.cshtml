@@ -1,0 +1,61 @@
+@page
+@model Fisioterapia.Web.Pages.Pacientes.Enderecos.IndexModel
+
+@{
+    ViewData["Title"] = "Enderecos";
+}
+
+<h1>Endere&ccedil;os</h1>
+
+<p>
+    <a asp-page="Create" class="btn btn-primary">Novo endere&ccedil;o</a>
+</p>
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EnderecosViewModels[0].Logradouro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EnderecosViewModels[0].Numero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EnderecosViewModels[0].Cidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EnderecosViewModels[0].Estado)
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.EnderecosViewModels)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Logradouro)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Numero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cidade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-sm btn-primary" title="Editar">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                </td>
+                <td>
+                    <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger" title="Remover">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

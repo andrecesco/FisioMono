@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Fisioterapia.Data
@@ -41,18 +42,18 @@ namespace Fisioterapia.Data
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(FisioterapiaDbContext).Assembly);
         }
 
-        public async Task<bool> Commit()
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-            foreach (var entry in ChangeTracker.Entries().Where(entry => entry.Entity.GetType().GetProperty("DataCadastro") != null))
+            foreach (var entry in ChangeTracker.Entries().Where(entry => entry.Entity.GetType().GetProperty("DataCriacao") != null))
             {
                 if (entry.State == EntityState.Added)
                 {
-                    entry.Property("DataCadastro").CurrentValue = DateTime.Now;
+                    entry.Property("DataCriacao").CurrentValue = DateTime.Now;
                 }
 
                 if (entry.State == EntityState.Modified)
                 {
-                    entry.Property("DataCadastro").IsModified = false;
+                    entry.Property("DataCriacao").IsModified = false;
                 }
             }
 
@@ -69,7 +70,7 @@ namespace Fisioterapia.Data
                 }
             }
 
-            return await base.SaveChangesAsync() > 0;
+            return base.SaveChangesAsync(cancellationToken);
         }
     }
 }

@@ -66,7 +66,7 @@ namespace Fisioterapia.Data.Mapping
                 .WithOne(a => a.Paciente)
                 .HasForeignKey(a => a.PacienteId);
 
-            builder.ToTable("Paciente");
+            builder.ToTable("Pacientes");
         }
     }
 }

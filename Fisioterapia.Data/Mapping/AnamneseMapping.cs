@@ -58,7 +58,7 @@ namespace Fisioterapia.Data.Mapping
             builder.HasOne(a => a.Paciente)
                 .WithOne(a => a.Anamnese);
 
-            builder.ToTable("Anamnese");
+            builder.ToTable("Anamneses");
         }
     }
 }

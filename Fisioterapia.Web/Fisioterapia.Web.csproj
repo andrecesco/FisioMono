@@ -5,14 +5,36 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Pages\Condutas\**" />
+    <Compile Remove="Pages\Convenios\**" />
+    <Compile Remove="Pages\Enderecos\**" />
+    <Content Remove="Pages\Condutas\**" />
+    <Content Remove="Pages\Convenios\**" />
+    <Content Remove="Pages\Enderecos\**" />
+    <EmbeddedResource Remove="Pages\Condutas\**" />
+    <EmbeddedResource Remove="Pages\Convenios\**" />
+    <EmbeddedResource Remove="Pages\Enderecos\**" />
+    <None Remove="Pages\Condutas\**" />
+    <None Remove="Pages\Convenios\**" />
+    <None Remove="Pages\Enderecos\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="jquery-globalize" Version="1.4.2" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SQLite" Version="5.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCOre.SqlServer" Version="5.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.10">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -23,10 +45,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Fisioterapia.Data\Fisioterapia.Data.csproj" />
     <ProjectReference Include="..\Fisioterapia.Domain\Fisioterapia.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
   </ItemGroup>
 
 </Project>

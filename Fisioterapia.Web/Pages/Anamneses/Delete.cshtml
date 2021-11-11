@@ -1,0 +1,142 @@
+@page
+@model Fisioterapia.Web.Pages.Anamneses.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Anamnese</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Anamnese.QP)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Anamnese.QP)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Anamnese.Investigacao)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Anamnese.Investigacao)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Anamnese.HPM)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Anamnese.HPM)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Anamnese.PressaoAlta)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Anamnese.PressaoAlta)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Anamnese.MedicamentoParaPressao)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Anamnese.MedicamentoParaPressao)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Anamnese.PraticaAtividadeFisica)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Anamnese.PraticaAtividadeFisica)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Anamnese.NomeAtividadeFisica)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Anamnese.NomeAtividadeFisica)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Anamnese.ExameFisioPostural)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Anamnese.ExameFisioPostural)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Anamnese.ConsumeSubstancias)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Anamnese.ConsumeSubstancias)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Anamnese.AlgiaPalpacao)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Anamnese.AlgiaPalpacao)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Anamnese.TonusMuscular)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Anamnese.TonusMuscular)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Anamnese.HipotrofiaMuscular)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Anamnese.HipotrofiaMuscular)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Anamnese.ContraturaMuscular)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Anamnese.ContraturaMuscular)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Anamnese.ContraturaMuscularObservacao)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Anamnese.ContraturaMuscularObservacao)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Anamnese.RetracaoMuscular)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Anamnese.RetracaoMuscular)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Anamnese.RetracaoMuscularObservacao)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Anamnese.RetracaoMuscularObservacao)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Anamnese.Paciente)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Anamnese.Paciente.Documento)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Anamnese.DataCriacao)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Anamnese.DataCriacao)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Anamnese.DataAlteracao)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Anamnese.DataAlteracao)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Anamnese.DataDelecao)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Anamnese.DataDelecao)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Anamnese.Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

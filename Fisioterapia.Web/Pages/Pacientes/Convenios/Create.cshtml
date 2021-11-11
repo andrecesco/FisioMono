@@ -1,0 +1,63 @@
+@page
+@model Fisioterapia.Web.Pages.Convenios.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Convenio</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Convenio.PacienteId" class="control-label"></label>
+                <select asp-for="Convenio.PacienteId" class ="form-control" asp-items="ViewBag.PacienteId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Convenio.Nome" class="control-label"></label>
+                <input asp-for="Convenio.Nome" class="form-control" />
+                <span asp-validation-for="Convenio.Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Convenio.Matricula" class="control-label"></label>
+                <input asp-for="Convenio.Matricula" class="form-control" />
+                <span asp-validation-for="Convenio.Matricula" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Convenio.Ativo" /> @Html.DisplayNameFor(model => model.Convenio.Ativo)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Convenio.DataCriacao" class="control-label"></label>
+                <input asp-for="Convenio.DataCriacao" class="form-control" />
+                <span asp-validation-for="Convenio.DataCriacao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Convenio.DataAlteracao" class="control-label"></label>
+                <input asp-for="Convenio.DataAlteracao" class="form-control" />
+                <span asp-validation-for="Convenio.DataAlteracao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Convenio.DataDelecao" class="control-label"></label>
+                <input asp-for="Convenio.DataDelecao" class="form-control" />
+                <span asp-validation-for="Convenio.DataDelecao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

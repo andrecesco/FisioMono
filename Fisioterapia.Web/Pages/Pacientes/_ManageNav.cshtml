@@ -1,0 +1,17 @@
+<ul class="nav nav-pills flex-column">
+    <li class="nav-item">
+        <a class="nav-link @ManageNavPages.EditNavClass(ViewContext)" id="alterar-paciente" href="@ManageNavPages.EditNavRoute(ViewContext)">Alterar Paciente</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @ManageNavPages.AnamneseNavClass(ViewContext)" id="adicionar-anamnese" href="@ManageNavPages.AnamneseNavRoute(ViewContext)">Anamnese</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @ManageNavPages.EnderecosNavClass(ViewContext)" id="lista-enderecos" href="@ManageNavPages.EnderecosNavRoute(ViewContext)">Endere&ccedil;os</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @ManageNavPages.ConveniosNavClass(ViewContext)" id="lista-convenio" href="@ManageNavPages.ConveniosNavRoute(ViewContext)">Conv&ecirc;nios</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" asp-page="/Pacientes/Index">Voltar</a>
+    </li>
+</ul>
