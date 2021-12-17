@@ -17,8 +17,9 @@ namespace Fisioterapia.Data.Repository
             return await Db.Tratamentos
                 .Include(t => t.CondutaTratamentos)
                 .ThenInclude(ct => ct.Conduta)
-                .AsNoTracking()
                 .Where(t => t.CondutaTratamentos.Any(ct => ct.CondutaId.Equals(condutaId)))
+                .OrderBy(t => t.Nome)
+                .AsNoTracking()
                 .ToListAsync();
         }
     }

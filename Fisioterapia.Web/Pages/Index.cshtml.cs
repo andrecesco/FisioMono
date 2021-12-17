@@ -19,7 +19,6 @@ namespace Fisioterapia.Web.Pages
 
         public void OnGet()
         {
-
         }
     }
 }

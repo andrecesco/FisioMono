@@ -7,33 +7,27 @@ namespace Fisioterapia.Web.Pages.Pacientes
     {
         public static string Edit => "Edit";
 
-        public static string Anamnese => "Anamnese";
+        public static string Anamneses => "Anamneses";
 
         public static string Convenios => "Convenios";
 
         public static string Enderecos => "Enderecos";
 
-        public static string Condutas => "Condutas";
-
         public static string EditNavClass(ViewContext viewContext) => PageNavClass(viewContext, Edit);
 
-        public static string AnamneseNavClass(ViewContext viewContext) => PageNavClass(viewContext, Anamnese);
+        public static string AnamneseNavClass(ViewContext viewContext) => PageNavClass(viewContext, Anamneses);
 
         public static string ConveniosNavClass(ViewContext viewContext) => PageNavClass(viewContext, Convenios);
 
         public static string EnderecosNavClass(ViewContext viewContext) => PageNavClass(viewContext, Enderecos);
 
-        public static string CondutasNavClass(ViewContext viewContext) => PageNavClass(viewContext, Condutas);
-
         public static string EditNavRoute(ViewContext viewContext) => PageNavRoute(viewContext, Edit);
 
-        public static string AnamneseNavRoute(ViewContext viewContext) => PageNavRoute(viewContext, Anamnese);
+        public static string AnamneseNavRoute(ViewContext viewContext) => PageNavRoute(viewContext, Anamneses);
 
         public static string ConveniosNavRoute(ViewContext viewContext) => PageNavRoute(viewContext, Convenios);
 
         public static string EnderecosNavRoute(ViewContext viewContext) => PageNavRoute(viewContext, Enderecos);
-
-        public static string CondutasNavRoute(ViewContext viewContext) => PageNavRoute(viewContext, Condutas);
 
         private static string PageNavClass(ViewContext viewContext, string page)
         {
@@ -46,8 +40,8 @@ namespace Fisioterapia.Web.Pages.Pacientes
 
         public static string PageNavRoute(ViewContext viewContext, string page)
         {
-            var paramId = viewContext.HttpContext.Request.Query["idPaciente"][0];
-            return $"./{page}?idPaciente={paramId}";
+            var paramId = viewContext.HttpContext.Request.Query["pacienteId"][0];
+            return $"/Pacientes/{page}?pacienteId={paramId}";
         }
     }
 }

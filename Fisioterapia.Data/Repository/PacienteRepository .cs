@@ -3,6 +3,7 @@ using Fisioterapia.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Fisioterapia.Data.Repository
@@ -27,6 +28,7 @@ namespace Fisioterapia.Data.Repository
         {
             return await Db.Pacientes
                 .Include(p => p.Condutas)
+                .OrderBy(c => c.NomeCompleto)
                 .AsNoTracking()
                 .ToListAsync()
                 .ConfigureAwait(false);

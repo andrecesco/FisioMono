@@ -2,7 +2,9 @@
 using Fisioterapia.Core.Messages.IntegrationEvents;
 using Fisioterapia.Data;
 using Fisioterapia.Data.Repository;
+using Fisioterapia.Data.Repository.Old;
 using Fisioterapia.Domain.Interfaces;
+using Fisioterapia.Domain.Interfaces.Old;
 using Fisioterapia.Domain.Models;
 using Fisioterapia.Domain.Notificacoes;
 using Fisioterapia.Domain.Service;
@@ -33,6 +35,9 @@ namespace Fisioterapia.Web.Configurations
             services.AddScoped<ICondutaService, CondutaService>();
 
             services.AddScoped<INotificador, Notificador>();
+
+            services.AddScoped<IPacienteOldRepository, PacienteOldRepository>();
+            services.AddScoped<IExameCondutaOldRepository, ExameCondutaOldRepository>();
 
             return services;
         }

@@ -17,6 +17,7 @@ namespace Fisioterapia.Data.Repository
             return await Db.Enderecos
                 .Include(c => c.Paciente)
                 .Where(c => c.PacienteId.Equals(pacienteId))
+                .OrderBy(c => c.Logradouro)
                 .AsNoTracking()
                 .ToListAsync()
                 .ConfigureAwait(false);

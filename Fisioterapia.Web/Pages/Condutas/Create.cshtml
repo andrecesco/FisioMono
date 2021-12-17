@@ -1,0 +1,41 @@
+@page
+@model Fisioterapia.Web.Pages.Condutas.CreateModel
+
+@{
+    ViewData["Title"] = "Nova Conduta";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h4>@Model.CondutaViewModel.Paciente.NomeCompleto</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CondutaViewModel.DataConduta" class="control-label"></label>
+                <input asp-for="CondutaViewModel.DataConduta" class="form-control" type="date" />
+                <span asp-validation-for="CondutaViewModel.DataConduta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CondutaViewModel.Descricao" class="control-label"></label>
+                <input asp-for="CondutaViewModel.Descricao" class="form-control" />
+                <span asp-validation-for="CondutaViewModel.Descricao" class="text-danger"></span>
+            </div>
+            <partial name="_Tratamentos.cshtml" model="@Model.TratamentosSelectItens" />
+            <div class="form-group">
+                <input type="hidden" asp-for="CondutaViewModel.PacienteId" />
+                <input type="submit" value="Criar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index" asp-route-pacienteid="@Model.CondutaViewModel.PacienteId">Voltar para lista</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -7,54 +7,50 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Fisioterapia.Data;
 using Fisioterapia.Domain.Models;
+using Fisioterapia.Domain.Interfaces;
+using AutoMapper;
+using Fisioterapia.Web.ViewModels;
 
 namespace Fisioterapia.Web.Pages.Enderecos
 {
     public class DeleteModel : PageModel
     {
-        private readonly Fisioterapia.Data.FisioterapiaDbContext _context;
+        private readonly IEnderecoRepository _enderecoRepository;
+        private readonly IPacienteService _pacienteService;
+        private readonly IMapper _mapper;
 
-        public DeleteModel(Fisioterapia.Data.FisioterapiaDbContext context)
+        public DeleteModel(IEnderecoRepository enderecoRepository, IPacienteService pacienteService, IMapper mapper)
         {
-            _context = context;
+            _enderecoRepository = enderecoRepository;
+            _pacienteService = pacienteService;
+            _mapper = mapper;
         }
 
         [BindProperty]
-        public Endereco Endereco { get; set; }
+        public EnderecoViewModel EnderecoViewModel { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(Guid? id)
+        public async Task<IActionResult> OnGetAsync(Guid id)
         {
-            if (id == null)
+            var endereco = await _enderecoRepository.ObterPorId(id);
+
+            if (endereco == null)
             {
                 return NotFound();
             }
 
-            Endereco = await _context.Enderecos
-                .Include(e => e.Paciente).FirstOrDefaultAsync(m => m.Id == id);
-
-            if (Endereco == null)
-            {
-                return NotFound();
-            }
+            EnderecoViewModel = _mapper.Map<EnderecoViewModel>(endereco);
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(Guid? id)
+        public async Task<IActionResult> OnPostAsync()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            await _pacienteService.RemoverEndereco(EnderecoViewModel.Id);
 
-            Endereco = await _context.Enderecos.FindAsync(id);
+            //return RedirectToPage("/Paciente/Enderecos", new { pacienteId = Endereco.PacienteId });
+            var url = Url.Action("/Pacientes/Enderecos", new { pacienteId = EnderecoViewModel.PacienteId });
+            url = url.Replace("/Delete", "");
 
-            if (Endereco != null)
-            {
-                _context.Enderecos.Remove(Endereco);
-                await _context.SaveChangesAsync();
-            }
-
-            return RedirectToPage("./Index");
+            return new JsonResult(new { success = true, url });
         }
     }
 }

@@ -12,11 +12,13 @@ namespace Fisioterapia.Web.Pages.Pacientes
     {
         private readonly IPacienteRepository _pacienteRepository;
         private readonly IPacienteService _pacienteService;
+        private readonly IMapper _mapper;
 
-        public DeleteModel(IPacienteService pacienteService, IPacienteRepository pacienteRepository)
+        public DeleteModel(IPacienteService pacienteService, IPacienteRepository pacienteRepository, IMapper mapper)
         {
             _pacienteService = pacienteService;
             _pacienteRepository = pacienteRepository;
+            _mapper = mapper;
         }
 
         [BindProperty]
@@ -35,6 +37,9 @@ namespace Fisioterapia.Web.Pages.Pacientes
             {
                 return NotFound();
             }
+
+            PacienteViewModel = _mapper.Map<PacienteViewModel>(paciente);
+
             return Page();
         }
 

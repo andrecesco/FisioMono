@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using System;
 
 namespace Fisioterapia.Domain.Models.Validations
 {
@@ -9,8 +10,10 @@ namespace Fisioterapia.Domain.Models.Validations
             RuleFor(f => f.PacienteId)
                 .NotEmpty().WithMessage("O campo {PropertyName} precisa ser fornecido");
 
-            RuleFor(f => f.Descricao)
-                .NotEmpty().WithMessage("O campo {PropertyName} precisa ser fornecido");        
+            RuleFor(f => f.DataConduta)
+                .NotEmpty()
+                .GreaterThan(DateTime.MinValue)
+                .WithMessage("O campo {PropertyName} precisa ser fornecido");   
         }
     }
 }

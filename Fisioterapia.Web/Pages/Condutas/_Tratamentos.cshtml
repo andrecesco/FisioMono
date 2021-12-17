@@ -1,0 +1,20 @@
+﻿@model IEnumerable<SelectListItem>
+@{
+}
+
+<div class="form-group">
+    @foreach (var item in Model)
+    {
+    <div class="form-check form-check-inline">
+        @if (item.Selected)
+        {
+            <input class="form-check-input" type="checkbox" for="@item.Value" id="@item.Value" value="@item.Value" checked name="TratamentosSelecionados">
+        }
+        else
+        {
+            <input class="form-check-input" type="checkbox" for="@item.Value" id="@item.Value" value="@item.Value" name="TratamentosSelecionados">
+        }
+        <label class="form-check-label" for="@item.Value">@item.Text</label>
+    </div>
+    }
+</div>

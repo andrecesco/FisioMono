@@ -28,14 +28,14 @@ namespace Fisioterapia.Web.Pages.Pacientes
         [TempData]
         public string StatusMessage { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(Guid? idPaciente)
+        public async Task<IActionResult> OnGetAsync(Guid? pacienteId)
         {
-            if (idPaciente == null)
+            if (pacienteId == null)
             {
                 return NotFound();
             }
 
-            var paciente = await _pacienteRepository.ObterPorId(idPaciente.Value);
+            var paciente = await _pacienteRepository.ObterPorId(pacienteId.Value);
 
             if (paciente is null)
             {
@@ -64,7 +64,7 @@ namespace Fisioterapia.Web.Pages.Pacientes
             }
 
             StatusMessage = "Paciente foi alterado";
-            return RedirectToPage(new { idPaciente = paciente.Id });
+            return RedirectToPage(new { pacienteId = paciente.Id });
         }
     }
 }

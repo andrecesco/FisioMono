@@ -1,0 +1,59 @@
+@page
+@model Fisioterapia.Web.Pages.Old.PacienteOld.IndexModel
+
+@{
+    ViewData["Title"] = "Lista de pacientes antigos";
+    Layout = "/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Lista de pacientes antigos</h1>
+
+<table class="table display">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PacienteOldViewModels[0].Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PacienteOldViewModels[0].Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PacienteOldViewModels[0].Telefone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PacienteOldViewModels[0].Celular)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PacienteOldViewModels[0].Profissao)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.PacienteOldViewModels)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telefone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Celular)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Profissao)
+                </td>
+                <td class="text-right">
+                    <a asp-page="/Old/ExameCondutaOld/Index" asp-route-pacienteid="@item.Id" class="btn btn-sm btn-primary" title="Ver Condutas">
+                        <i class="fas fa-book-open"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

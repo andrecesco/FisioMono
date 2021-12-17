@@ -1,32 +1,39 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using AutoMapper;
+using Fisioterapia.Domain.Interfaces;
+using Fisioterapia.Domain.Models;
+using Fisioterapia.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Fisioterapia.Data;
-using Fisioterapia.Domain.Models;
+using System;
+using System.Threading.Tasks;
 
 namespace Fisioterapia.Web.Pages.Convenios
 {
     public class CreateModel : PageModel
     {
-        private readonly Fisioterapia.Data.FisioterapiaDbContext _context;
+        private readonly IPacienteService _pacienteService;
+        private readonly IMapper _mapper;
 
-        public CreateModel(Fisioterapia.Data.FisioterapiaDbContext context)
+        public CreateModel(IPacienteService pacienteService, IMapper mapper)
         {
-            _context = context;
+            _pacienteService = pacienteService;
+            _mapper = mapper;
         }
 
-        public IActionResult OnGet()
+        public IActionResult OnGet(Guid pacienteId)
         {
-        ViewData["PacienteId"] = new SelectList(_context.Pacientes, "Id", "Documento");
+            ConvenioViewModel = new ConvenioViewModel
+            {
+                PacienteId = pacienteId
+            };
             return Page();
         }
 
         [BindProperty]
-        public Convenio Convenio { get; set; }
+        public ConvenioViewModel ConvenioViewModel { get; set; }
+
+        [TempData]
+        public string StatusMessage { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
@@ -36,10 +43,14 @@ namespace Fisioterapia.Web.Pages.Convenios
                 return Page();
             }
 
-            _context.Convenios.Add(Convenio);
-            await _context.SaveChangesAsync();
+            var convenio = _mapper.Map<Convenio>(ConvenioViewModel);
 
-            return RedirectToPage("./Index");
+            await _pacienteService.AdicionarConvenio(convenio);
+
+            //return RedirectToPage("/Paciente/Convenios", new { pacienteId = convenio.PacienteId });
+            var url = Url.Action("/Pacientes/Convenios", new { pacienteId = convenio.PacienteId });
+            url = url.Replace("/Create", "");
+            return new JsonResult(new { success = true, url });
         }
     }
 }

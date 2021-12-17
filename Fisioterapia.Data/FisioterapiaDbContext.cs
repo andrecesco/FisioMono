@@ -1,4 +1,5 @@
 ﻿using Fisioterapia.Domain.Models;
+using Fisioterapia.Domain.Models.Old;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
@@ -16,6 +17,9 @@ namespace Fisioterapia.Data
         public DbSet<Endereco> Enderecos { get; set; }
         public DbSet<Paciente> Pacientes { get; set; }
         public DbSet<Tratamento> Tratamentos { get; set; }
+        public DbSet<PacienteOld> Paciente { get; set; }
+        public DbSet<ExameCondutaOld> Exame_Conduta { get; set; }
+        public DbSet<ConfiguracaoOld> Configuracao { get; set; }
 
         public FisioterapiaDbContext(DbContextOptions options) : base(options)
         {

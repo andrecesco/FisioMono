@@ -13,8 +13,11 @@ namespace Fisioterapia.Data.Mapping
             builder.Property(a => a.PacienteId)
                 .IsRequired();
 
-            builder.Property(a => a.Descricao)
+            builder.Property(a => a.DataConduta)
                 .IsRequired()
+                .HasColumnType("datetime");
+
+            builder.Property(a => a.Descricao)
                 .HasColumnType("varchar(MAX)");
 
             builder.Property(a => a.DataCriacao)

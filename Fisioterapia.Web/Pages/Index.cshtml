@@ -1,10 +1,25 @@
 ﻿@page
+@using Microsoft.AspNetCore.Identity
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="text-center">
+        <h3>Bem-vindo @UserManager.GetUserName(User)!</h3>
+        <p>Clique no menu acima para acessar o cadastro de pacientes</p>
+    </div>
+}
+else
+{
+    <div class="text-center">
+        <h1 class="display-4">Bem-vindo</h1>
+        <p>Para acessar as funcionalidades do sistema é necessário estar autenticado.</p>
+        <p><a class="nav-link" id="login" asp-area="Identity" asp-page="/Account/Login">Clique aqui para autenticar</a></p>
+    </div>
+}

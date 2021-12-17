@@ -1,6 +1,7 @@
 using AutoMapper;
 using Fisioterapia.Domain.Interfaces;
 using Fisioterapia.Web.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Fisioterapia.Web.Pages.Tratamentos
 {
+    [Authorize(Roles = "Admin")]
     public class IndexModel : PageModel
     {
         private readonly ITratamentoRepository _tratamentoRepository;

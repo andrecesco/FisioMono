@@ -40,7 +40,7 @@ namespace Fisioterapia.Domain.Service
                 return;
             }
 
-            if(_condutaRepository.ObterPorId(conduta.Id).Result is null)
+            if (_condutaRepository.ObterPorId(conduta.Id).Result is null)
             {
                 Notificar("Não foi encontrado nenhuma conduta!");
                 return;
@@ -51,16 +51,11 @@ namespace Fisioterapia.Domain.Service
 
         public async Task Remover(Guid id)
         {
-            var conduta = await _condutaRepository.ObterCondutaCompletaPorId(id);
+            var conduta = await _condutaRepository.ObterPorId(id);
             if (conduta == null)
             {
                 Notificar("Não foi encontrado nenhuma conduta!");
                 return;
-            }
-
-            if (conduta.CondutaTratamentos is not null && conduta.CondutaTratamentos.Any())
-            {
-                await _condutaTratamentoRepository.RemoverRange(conduta.CondutaTratamentos);
             }
 
             await _condutaRepository.Remover(conduta);
@@ -71,12 +66,6 @@ namespace Fisioterapia.Domain.Service
         #region Conduta Tratamento
         public async Task AdicionarCondutaTratamentos(Guid condutaId, IEnumerable<CondutaTratamento> condutaTratamentos)
         {
-            if (condutaTratamentos is null || !condutaTratamentos.Any())
-            {
-                Notificar("A há nenhum tratamento para ser inserido");
-                return;
-            }
-
             var condutasTratamentosModel = await _condutaTratamentoRepository.ObterTodosPorConduta(condutaId);
 
             if (condutasTratamentosModel.Any())
@@ -129,12 +118,6 @@ namespace Fisioterapia.Domain.Service
             if (tratamento == null)
             {
                 Notificar("Não foi encontrado nenhum tratamento!");
-                return;
-            }
-
-            if (_condutaRepository.ObterCondutasPorTratamentoId(id).Result.Any())
-            {
-                Notificar("Não é possível remover esse tratamento, pois existe condutas ligadas a ele!");
                 return;
             }
 

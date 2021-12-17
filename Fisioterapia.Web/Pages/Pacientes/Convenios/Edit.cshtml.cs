@@ -1,48 +1,46 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using AutoMapper;
+using Fisioterapia.Domain.Interfaces;
+using Fisioterapia.Domain.Models;
+using Fisioterapia.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Fisioterapia.Data;
-using Fisioterapia.Domain.Models;
+using System;
+using System.Threading.Tasks;
 
 namespace Fisioterapia.Web.Pages.Convenios
 {
     public class EditModel : PageModel
     {
-        private readonly Fisioterapia.Data.FisioterapiaDbContext _context;
+        private readonly IConvenioRepository _convenioRepository;
+        private readonly IPacienteService _pacienteService;
+        private readonly IMapper _mapper;
 
-        public EditModel(Fisioterapia.Data.FisioterapiaDbContext context)
+        public EditModel(IConvenioRepository convenioRepository, IPacienteService pacienteService, IMapper mapper)
         {
-            _context = context;
+            _convenioRepository = convenioRepository;
+            _pacienteService = pacienteService;
+            _mapper = mapper;
         }
 
         [BindProperty]
-        public Convenio Convenio { get; set; }
+        public ConvenioViewModel ConvenioViewModel { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(Guid? id)
+        [TempData]
+        public string StatusMessage { get; set; }
+
+        public async Task<IActionResult> OnGetAsync(Guid id)
         {
-            if (id == null)
+            var convenio = await _convenioRepository.ObterPorId(id);
+
+            if (convenio == null)
             {
                 return NotFound();
             }
 
-            Convenio = await _context.Convenios
-                .Include(c => c.Paciente).FirstOrDefaultAsync(m => m.Id == id);
-
-            if (Convenio == null)
-            {
-                return NotFound();
-            }
-           ViewData["PacienteId"] = new SelectList(_context.Pacientes, "Id", "Documento");
+            ConvenioViewModel = _mapper.Map<ConvenioViewModel>(convenio);
             return Page();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -50,30 +48,15 @@ namespace Fisioterapia.Web.Pages.Convenios
                 return Page();
             }
 
-            _context.Attach(Convenio).State = EntityState.Modified;
+            var convenio = _mapper.Map<Convenio>(ConvenioViewModel);
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ConvenioExists(Convenio.Id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            await _pacienteService.AtualizarConvenio(convenio);
 
-            return RedirectToPage("./Index");
-        }
+            //return RedirectToPage("/Paciente/Convenios", new { pacienteId = convenio.PacienteId });
+            var url = Url.Action("/Pacientes/Convenios", new { pacienteId = convenio.PacienteId });
+            url = url.Replace("/Edit", "");
 
-        private bool ConvenioExists(Guid id)
-        {
-            return _context.Convenios.Any(e => e.Id == id);
+            return new JsonResult(new { success = true, url });
         }
     }
 }

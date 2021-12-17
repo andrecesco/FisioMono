@@ -1,32 +1,36 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using AutoMapper;
+using Fisioterapia.Domain.Interfaces;
+using Fisioterapia.Domain.Models;
+using Fisioterapia.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Fisioterapia.Data;
-using Fisioterapia.Domain.Models;
+using System;
+using System.Threading.Tasks;
 
 namespace Fisioterapia.Web.Pages.Enderecos
 {
     public class CreateModel : PageModel
     {
-        private readonly Fisioterapia.Data.FisioterapiaDbContext _context;
+        private readonly IPacienteService _pacienteService;
+        private readonly IMapper _mapper;
 
-        public CreateModel(Fisioterapia.Data.FisioterapiaDbContext context)
+        public CreateModel(IPacienteService pacienteService, IMapper mapper)
         {
-            _context = context;
+            _pacienteService = pacienteService;
+            _mapper = mapper;
         }
 
-        public IActionResult OnGet()
+        public IActionResult OnGet(Guid pacienteId)
         {
-        ViewData["PacienteId"] = new SelectList(_context.Pacientes, "Id", "Documento");
+            EnderecoViewModel = new EnderecoViewModel
+            {
+                PacienteId = pacienteId
+            };
             return Page();
         }
 
         [BindProperty]
-        public Endereco Endereco { get; set; }
+        public EnderecoViewModel EnderecoViewModel { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
@@ -36,10 +40,14 @@ namespace Fisioterapia.Web.Pages.Enderecos
                 return Page();
             }
 
-            _context.Enderecos.Add(Endereco);
-            await _context.SaveChangesAsync();
+            var endereco = _mapper.Map<Endereco>(EnderecoViewModel);
 
-            return RedirectToPage("./Index");
+            await _pacienteService.AdicionarEndereco(endereco);
+
+            //return RedirectToPage("/Paciente/Convenios", new { pacienteId = convenio.PacienteId });
+            var url = Url.Action("/Pacientes/Enderecos", new { pacienteId = endereco.PacienteId });
+            url = url.Replace("/Create", "");
+            return new JsonResult(new { success = true, url });
         }
     }
 }

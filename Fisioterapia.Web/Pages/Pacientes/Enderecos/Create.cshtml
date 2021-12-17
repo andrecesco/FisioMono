@@ -2,81 +2,61 @@
 @model Fisioterapia.Web.Pages.Enderecos.CreateModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Novo Endereço";
+    Layout = null;
 }
 
-<h1>Create</h1>
+<div class="modal-header">
+    <h4 class="modal-title">@ViewData["Title"]</h4>
+    <button type="button" class="close" data-dismiss="modal">
+        <i class="fas fa-times"></i>
+    </button>
+</div>
 
-<h4>Endereco</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Endereco.PacienteId" class="control-label"></label>
-                <select asp-for="Endereco.PacienteId" class ="form-control" asp-items="ViewBag.PacienteId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Endereco.Logradouro" class="control-label"></label>
-                <input asp-for="Endereco.Logradouro" class="form-control" />
-                <span asp-validation-for="Endereco.Logradouro" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Endereco.Numero" class="control-label"></label>
-                <input asp-for="Endereco.Numero" class="form-control" />
-                <span asp-validation-for="Endereco.Numero" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Endereco.Complemento" class="control-label"></label>
-                <input asp-for="Endereco.Complemento" class="form-control" />
-                <span asp-validation-for="Endereco.Complemento" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Endereco.Bairro" class="control-label"></label>
-                <input asp-for="Endereco.Bairro" class="form-control" />
-                <span asp-validation-for="Endereco.Bairro" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Endereco.Cidade" class="control-label"></label>
-                <input asp-for="Endereco.Cidade" class="form-control" />
-                <span asp-validation-for="Endereco.Cidade" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Endereco.Estado" class="control-label"></label>
-                <input asp-for="Endereco.Estado" class="form-control" />
-                <span asp-validation-for="Endereco.Estado" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Endereco.CEP" class="control-label"></label>
-                <input asp-for="Endereco.CEP" class="form-control" />
-                <span asp-validation-for="Endereco.CEP" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Endereco.DataCriacao" class="control-label"></label>
-                <input asp-for="Endereco.DataCriacao" class="form-control" />
-                <span asp-validation-for="Endereco.DataCriacao" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Endereco.DataAlteracao" class="control-label"></label>
-                <input asp-for="Endereco.DataAlteracao" class="form-control" />
-                <span asp-validation-for="Endereco.DataAlteracao" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Endereco.DataDelecao" class="control-label"></label>
-                <input asp-for="Endereco.DataDelecao" class="form-control" />
-                <span asp-validation-for="Endereco.DataDelecao" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+<form asp-action="Create" method="post">
+    <div class="modal-body">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="EnderecoViewModel.CEP" class="control-label"></label>
+            <input asp-for="EnderecoViewModel.CEP" class="form-control" />
+            <span asp-validation-for="EnderecoViewModel.CEP" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="EnderecoViewModel.Logradouro" class="control-label"></label>
+            <input asp-for="EnderecoViewModel.Logradouro" class="form-control" />
+            <span asp-validation-for="EnderecoViewModel.Logradouro" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="EnderecoViewModel.Numero" class="control-label"></label>
+            <input asp-for="EnderecoViewModel.Numero" class="form-control" />
+            <span asp-validation-for="EnderecoViewModel.Numero" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="EnderecoViewModel.Complemento" class="control-label"></label>
+            <input asp-for="EnderecoViewModel.Complemento" class="form-control" />
+            <span asp-validation-for="EnderecoViewModel.Complemento" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="EnderecoViewModel.Bairro" class="control-label"></label>
+            <input asp-for="EnderecoViewModel.Bairro" class="form-control" />
+            <span asp-validation-for="EnderecoViewModel.Bairro" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="EnderecoViewModel.Cidade" class="control-label"></label>
+            <input asp-for="EnderecoViewModel.Cidade" class="form-control" />
+            <span asp-validation-for="EnderecoViewModel.Cidade" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="EnderecoViewModel.Estado" class="control-label"></label>
+            <input asp-for="EnderecoViewModel.Estado" class="form-control" />
+            <span asp-validation-for="EnderecoViewModel.Estado" class="text-danger"></span>
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-page="Index">Back to List</a>
-</div>
+    <div class="modal-footer">
+        <input type="hidden" asp-for="EnderecoViewModel.PacienteId" />
+        <input type="submit" value="Criar" class="btn btn-primary" />
+    </div>
+</form>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

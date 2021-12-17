@@ -17,10 +17,10 @@ namespace Fisioterapia.Domain.Service
 
         public async Task Handle(PacienteRemovidoEvent notification, CancellationToken cancellationToken)
         {
-            foreach (var condutaId in notification.CondutaIds)
-            {
-                await _condutaService.Remover(condutaId);
-            }
+            //foreach (var condutaId in notification.CondutaIds)
+            //{
+            //    await _condutaService.Remover(condutaId);
+            //}
         }
     }
 }

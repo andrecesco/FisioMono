@@ -7,54 +7,50 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Fisioterapia.Data;
 using Fisioterapia.Domain.Models;
+using Fisioterapia.Domain.Interfaces;
+using AutoMapper;
+using Fisioterapia.Web.ViewModels;
 
 namespace Fisioterapia.Web.Pages.Convenios
 {
     public class DeleteModel : PageModel
     {
-        private readonly Fisioterapia.Data.FisioterapiaDbContext _context;
+        private readonly IConvenioRepository _convenioRepository;
+        private readonly IPacienteService _pacienteService;
+        private readonly IMapper _mapper;
 
-        public DeleteModel(Fisioterapia.Data.FisioterapiaDbContext context)
+        public DeleteModel(IConvenioRepository convenioRepository, IPacienteService pacienteService, IMapper mapper)
         {
-            _context = context;
+            _convenioRepository = convenioRepository;
+            _pacienteService = pacienteService;
+            _mapper = mapper;
         }
 
         [BindProperty]
-        public Convenio Convenio { get; set; }
+        public ConvenioViewModel ConvenioViewModel { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(Guid? id)
+        public async Task<IActionResult> OnGetAsync(Guid id)
         {
-            if (id == null)
+            var convenio = await _convenioRepository.ObterPorId(id);
+
+            if (convenio == null)
             {
                 return NotFound();
             }
 
-            Convenio = await _context.Convenios
-                .Include(c => c.Paciente).FirstOrDefaultAsync(m => m.Id == id);
-
-            if (Convenio == null)
-            {
-                return NotFound();
-            }
+            ConvenioViewModel = _mapper.Map<ConvenioViewModel>(convenio);
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(Guid? id)
+        public async Task<IActionResult> OnPostAsync()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            await _pacienteService.RemoverConvenio(ConvenioViewModel.Id);
 
-            Convenio = await _context.Convenios.FindAsync(id);
+            //return RedirectToPage("/Paciente/Convenios", new { pacienteId = convenio.PacienteId });
+            var url = Url.Action("/Pacientes/Convenios", new { pacienteId = ConvenioViewModel.PacienteId });
+            url = url.Replace("/Delete", "");
 
-            if (Convenio != null)
-            {
-                _context.Convenios.Remove(Convenio);
-                await _context.SaveChangesAsync();
-            }
-
-            return RedirectToPage("./Index");
+            return new JsonResult(new { success = true, url });
         }
     }
 }

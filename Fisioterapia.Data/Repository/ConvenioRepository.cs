@@ -17,6 +17,7 @@ namespace Fisioterapia.Data.Repository
             return await Db.Convenios
                 .Include(c => c.Paciente)
                 .Where(c => c.PacienteId.Equals(pacienteId))
+                .OrderBy(c => c.Nome)
                 .AsNoTracking()
                 .ToListAsync()
                 .ConfigureAwait(false);

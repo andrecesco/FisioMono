@@ -28,6 +28,7 @@ namespace Fisioterapia.Web.ViewModels
         public string Celular { get; set; }
 
         [DisplayName("Nascimento")]
+        [DataType(DataType.Date)]
         public DateTime? DataNascimento { get; set; }
 
         [DisplayName("Profissão")]

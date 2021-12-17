@@ -1,24 +1,23 @@
-﻿function SetModal() {
+﻿
+$(document).ready(function () {
+    $(function () {
+        $.ajaxSetup({ cache: false });
 
-    $(document).ready(function () {
-        $(function () {
-            $.ajaxSetup({ cache: false });
-
-            $("a[data-modal]").on("click",
-                function (e) {
-                    $('#myModalContent').load(this.href,
-                        function () {
-                            $('#myModal').modal({
-                                keyboard: true
-                            },
-                                'show');
-                            bindForm(this);
-                        });
-                    return false;
-                });
-        });
+        $("a[data-modal]").on("click",
+            function (e) {
+                $('#myModalContent').html('');
+                $('#myModalContent').load(this.href,
+                    function () {
+                        $('#myModal').modal({
+                            keyboard: true
+                        },
+                            'show');
+                        bindForm(this);
+                    });
+                return false;
+            });
     });
-}
+});
 
 function bindForm(dialog) {
     $('form', dialog).submit(function () {
@@ -29,7 +28,7 @@ function bindForm(dialog) {
             success: function (result) {
                 if (result.success) {
                     $('#myModal').modal('hide');
-                    $('#EnderecoTarget').load(result.url); // Carrega o resultado HTML para a div demarcada
+                    window.location.replace(result.url);
                 } else {
                     $('#myModalContent').html(result);
                     bindForm(dialog);
@@ -37,7 +36,6 @@ function bindForm(dialog) {
             }
         });
 
-        SetModal();
         return false;
     });
 }
@@ -109,3 +107,65 @@ function BuscaCep() {
 $(document).ready(function () {
     $("#msg_box").fadeOut(2500);
 });
+
+function deleteRow(id, pacienteId) {
+
+    swal({
+        text: 'Tem certeza que deseja remover?',
+        buttons: {
+            cancel: {
+                text: "Cancel",
+                value: null,
+                visible: true,
+                className: "",
+                closeModal: true,
+            },
+            confirm: {
+                text: "OK",
+                value: true,
+                visible: true,
+                className: "btn-danger",
+                closeModal: true
+            }
+        },
+    })
+        .then((value) => {
+            switch (value) {
+                case "OK":
+                    swal("Pikachu fainted! You gained 500 XP!");
+                    break;
+            }
+        })
+        .then(name => {
+            if (!name) throw null;
+
+            return fetch(`https://itunes.apple.com/search?term=${name}&entity=movie`);
+        })
+        .then(results => {
+            return results.json();
+        })
+        .then(json => {
+            const movie = json.results[0];
+
+            if (!movie) {
+                return swal("No movie was found!");
+            }
+
+            const name = movie.trackName;
+            const imageURL = movie.artworkUrl100;
+
+            swal({
+                title: "Top result:",
+                text: name,
+                icon: imageURL,
+            });
+        })
+        .catch(err => {
+            if (err) {
+                swal("Oh noes!", "The AJAX request failed!", "error");
+            } else {
+                swal.stopLoading();
+                swal.close();
+            }
+        });
+}

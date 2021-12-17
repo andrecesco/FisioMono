@@ -102,6 +102,9 @@ namespace Fisioterapia.Data.Migrations
                     b.Property<DateTime?>("DataAlteracao")
                         .HasColumnType("datetime");
 
+                    b.Property<DateTime>("DataConduta")
+                        .HasColumnType("datetime");
+
                     b.Property<DateTime>("DataCriacao")
                         .HasColumnType("datetime");
 
@@ -109,7 +112,6 @@ namespace Fisioterapia.Data.Migrations
                         .HasColumnType("datetime");
 
                     b.Property<string>("Descricao")
-                        .IsRequired()
                         .HasColumnType("varchar(MAX)");
 
                     b.Property<Guid>("PacienteId")

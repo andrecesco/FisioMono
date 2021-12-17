@@ -8,7 +8,7 @@
 <h1>Endere&ccedil;os</h1>
 
 <p>
-    <a asp-page="Create" class="btn btn-primary">Novo endere&ccedil;o</a>
+    <a asp-page="Create" asp-route-pacienteid="@Model.PacienteId" class="btn btn-primary" data-modal="">Novo endere&ccedil;o</a>
 </p>
 <table class="table table-hover">
     <thead class="thead-dark">
@@ -25,7 +25,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.EnderecosViewModels[0].Estado)
             </th>
-            <th></th>
             <th></th>
         </tr>
     </thead>
@@ -45,13 +44,11 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Estado)
                 </td>
-                <td>
-                    <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-sm btn-primary" title="Editar">
+                <td class="text-right">
+                    <a asp-page="./Edit" asp-route-pacienteid="@item.PacienteId" asp-route-id="@item.Id" class="btn btn-sm btn-primary" title="Editar" data-modal="">
                         <i class="fas fa-edit"></i>
                     </a>
-                </td>
-                <td>
-                    <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger" title="Remover">
+                    <a asp-page="./Delete" asp-route-pacienteid="@item.PacienteId" asp-route-id="@item.Id" class="btn btn-sm btn-danger" title="Remover" data-modal="">
                         <i class="fas fa-trash-alt"></i>
                     </a>
                 </td>

@@ -47,7 +47,7 @@ namespace Fisioterapia.Test.CondutaTest
             var result = condutaService.Adicionar(conduta);
 
             //Assert
-            mocker.GetMock<INotificador>().Verify(a => a.Handle(It.IsAny<Notificacao>()), Times.Exactly(2));
+            mocker.GetMock<INotificador>().Verify(a => a.Handle(It.IsAny<Notificacao>()), Times.Exactly(3));
             mocker.GetMock<ICondutaRepository>().Verify(r => r.Adicionar(conduta), Times.Never);
         }
 
@@ -77,7 +77,7 @@ namespace Fisioterapia.Test.CondutaTest
             var condutaService = _condutaServiceTestsFixture.ObterCondutaSevice();
             var mocker = _condutaServiceTestsFixture.Mocker;
             _condutaServiceTestsFixture.Mocker.GetMock<ICondutaRepository>()
-                .Setup(c => c.ObterPorId(Guid.NewGuid()).Result)
+                .Setup(c => c.ObterCondutaCompletaPorId(Guid.NewGuid()).Result)
                 .Returns(conduta);
 
             //Act
@@ -96,7 +96,7 @@ namespace Fisioterapia.Test.CondutaTest
             var condutaService = _condutaServiceTestsFixture.ObterCondutaSevice();
             var mocker = _condutaServiceTestsFixture.Mocker;
             _condutaServiceTestsFixture.Mocker.GetMock<ICondutaRepository>()
-                .Setup(c => c.ObterCondutaCompletaPorId(conduta.Id).Result)
+                .Setup(c => c.ObterPorId(conduta.Id).Result)
                 .Returns(conduta);
 
             //Act
@@ -168,26 +168,6 @@ namespace Fisioterapia.Test.CondutaTest
             //Assert
             mocker.GetMock<ICondutaTratamentoRepository>().Verify(r => r.RemoverRange(conduta.CondutaTratamentos), Times.Never);
             mocker.GetMock<ICondutaTratamentoRepository>().Verify(r => r.AdicionarRange(conduta.CondutaTratamentos), Times.Once);
-        }
-
-        [Fact]
-        public async Task CondutaService_AdicionarCondutaTratamentos_ErroListaVazia()
-        {
-            //Arrange
-            var conduta = _condutaServiceTestsFixture.GerarCondutaValida();
-            var condutaService = _condutaServiceTestsFixture.ObterCondutaSevice();
-            var mocker = _condutaServiceTestsFixture.Mocker;
-            mocker.GetMock<ICondutaRepository>()
-                .Setup(c => c.ObterCondutaCompletaPorId(conduta.Id).Result)
-                .Returns(conduta);
-
-            //Act
-            await condutaService.AdicionarCondutaTratamentos(conduta.Id, new List<CondutaTratamento>());
-
-            //Assert
-            mocker.GetMock<INotificador>().Verify(a => a.Handle(It.IsAny<Notificacao>()), Times.Once);
-            mocker.GetMock<ICondutaTratamentoRepository>().Verify(r => r.RemoverRange(conduta.CondutaTratamentos), Times.Never);
-            mocker.GetMock<ICondutaTratamentoRepository>().Verify(r => r.AdicionarRange(conduta.CondutaTratamentos), Times.Never);
         }
 
         [Fact]

@@ -15,7 +15,7 @@ namespace Fisioterapia.Data.Repository
         public async Task<IEnumerable<CondutaTratamento>> ObterTodosPorConduta(Guid condutaId)
         {
             return await Db.CondutasTratamentos
-                .Where(c => c.Id.Equals(condutaId))
+                .Where(c => c.CondutaId.Equals(condutaId))
                 .AsNoTracking()
                 .ToListAsync()
                 .ConfigureAwait(false);

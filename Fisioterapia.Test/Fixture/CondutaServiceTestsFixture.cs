@@ -25,6 +25,7 @@ namespace Fisioterapia.Test.Fixture
             condutaFaker.CustomInstantiator(f => new Conduta
             {
                 PacienteId = Guid.NewGuid(),
+                DataConduta = f.Date.Past(1),
                 Descricao = f.Lorem.Text()
             });
             condutaFaker.RuleFor(c => c.Descricao, (f, c) => f.Lorem.Text());

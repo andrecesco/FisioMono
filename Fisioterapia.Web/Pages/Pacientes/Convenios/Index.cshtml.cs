@@ -1,6 +1,7 @@
 using AutoMapper;
 using Fisioterapia.Domain.Interfaces;
 using Fisioterapia.Web.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using System.Collections.Generic;
@@ -21,9 +22,13 @@ namespace Fisioterapia.Web.Pages.Pacientes.Convenios
 
         public IList<ConvenioViewModel> ConveniosViewModels { get; set; }
 
-        public async Task OnGetAsync(Guid idPaciente)
+        [TempData]
+        public Guid PacienteId { get; set; }
+
+        public async Task OnGetAsync(Guid pacienteId)
         {
-            ConveniosViewModels = _mapper.Map<IList<ConvenioViewModel>>(await _convenioRepository.ObterConveniosPorIdPaciente(idPaciente));
+            PacienteId = pacienteId;
+            ConveniosViewModels = _mapper.Map<IList<ConvenioViewModel>>(await _convenioRepository.ObterConveniosPorIdPaciente(pacienteId));
         }
     }
 }

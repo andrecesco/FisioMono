@@ -1,43 +1,40 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+    using AutoMapper;
+using Fisioterapia.Domain.Interfaces;
+using Fisioterapia.Domain.Models;
+using Fisioterapia.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Fisioterapia.Data;
-using Fisioterapia.Domain.Models;
+using System;
+using System.Threading.Tasks;
 
 namespace Fisioterapia.Web.Pages.Enderecos
 {
     public class EditModel : PageModel
     {
-        private readonly Fisioterapia.Data.FisioterapiaDbContext _context;
+        private readonly IEnderecoRepository _enderecoRepository;
+        private readonly IPacienteService _pacienteService;
+        private readonly IMapper _mapper;
 
-        public EditModel(Fisioterapia.Data.FisioterapiaDbContext context)
+        public EditModel(IEnderecoRepository enderecoRepository, IPacienteService pacienteService, IMapper mapper)
         {
-            _context = context;
+            _enderecoRepository = enderecoRepository;
+            _pacienteService = pacienteService;
+            _mapper = mapper;
         }
 
         [BindProperty]
-        public Endereco Endereco { get; set; }
+        public EnderecoViewModel EnderecoViewModel { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(Guid? id)
+        public async Task<IActionResult> OnGetAsync(Guid id)
         {
-            if (id == null)
+            var endereco = await _enderecoRepository.ObterPorId(id);
+
+            if (endereco == null)
             {
                 return NotFound();
             }
 
-            Endereco = await _context.Enderecos
-                .Include(e => e.Paciente).FirstOrDefaultAsync(m => m.Id == id);
-
-            if (Endereco == null)
-            {
-                return NotFound();
-            }
-           ViewData["PacienteId"] = new SelectList(_context.Pacientes, "Id", "Documento");
+            EnderecoViewModel = _mapper.Map<EnderecoViewModel>(endereco);
             return Page();
         }
 
@@ -50,30 +47,15 @@ namespace Fisioterapia.Web.Pages.Enderecos
                 return Page();
             }
 
-            _context.Attach(Endereco).State = EntityState.Modified;
+            var endereco = _mapper.Map<Endereco>(EnderecoViewModel);
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!EnderecoExists(Endereco.Id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            await _pacienteService.AtualizarEndereco(endereco);
 
-            return RedirectToPage("./Index");
-        }
+            //return RedirectToPage("/Paciente/Enderecos", new { pacienteId = Endereco.PacienteId });
+            var url = Url.Action("/Pacientes/Enderecos", new { pacienteId = endereco.PacienteId });
+            url = url.Replace("/Edit", "");
 
-        private bool EnderecoExists(Guid id)
-        {
-            return _context.Enderecos.Any(e => e.Id == id);
+            return new JsonResult(new { success = true, url });
         }
     }
 }

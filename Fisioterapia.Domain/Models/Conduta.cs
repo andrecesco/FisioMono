@@ -7,6 +7,7 @@ namespace Fisioterapia.Domain.Models
     public class Conduta : Entity
     {
         public Guid PacienteId { get; set; }
+        public DateTime DataConduta { get; set; }
         public string Descricao { get; set; }
         public IEnumerable<Tratamento> Tratamentos { get; set; }
 
@@ -14,7 +15,10 @@ namespace Fisioterapia.Domain.Models
         public Paciente Paciente { get; set; }
         public IEnumerable<CondutaTratamento> CondutaTratamentos { get; set; }
 
-        public Conduta() { }
+        public Conduta() : base()
+        {
+
+        }
 
         //public Conduta(Guid pacienteId, string descricao)
         //{

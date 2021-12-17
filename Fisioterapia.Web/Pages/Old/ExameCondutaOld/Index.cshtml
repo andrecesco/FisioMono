@@ -1,0 +1,40 @@
+@page
+@model Fisioterapia.Web.Pages.Old.ExameCondutaOld.IndexModel
+
+@{
+    ViewData["Title"] = "Condutas";
+    Layout = "/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Condutas do paciente @Model.PacienteOldViewModel.Nome</h1>
+
+<a asp-page="/Old/PacienteOld/Index">Voltar para lista</a>
+<hr />
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ExameCondutaOldViewModels[0].Data)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExameCondutaOldViewModels[0].Conduta)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ExameCondutaOldViewModels)
+        {
+            <tr>
+                <td>
+                    @if (item.Data.HasValue)
+                    {
+                        @item.Data.Value.ToShortDateString();
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Conduta)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -17,6 +17,7 @@ namespace Fisioterapia.Data.Repository
             return await Db.Condutas
                 .Include(c => c.CondutaTratamentos)
                 .ThenInclude(ct => ct.Tratamento)
+                .Include(c => c.Paciente)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(c => c.Id.Equals(condutaId))
                 .ConfigureAwait(false);
@@ -26,8 +27,11 @@ namespace Fisioterapia.Data.Repository
         {
             return await Db.Condutas
                 .Include(c => c.Paciente)
-                .AsNoTracking()
+                .Include(c => c.CondutaTratamentos)
+                .ThenInclude(ct => ct.Tratamento)
                 .Where(c => c.PacienteId.Equals(pacienteId))
+                .OrderByDescending(c => c.DataConduta)
+                .AsNoTracking()
                 .ToListAsync()
                 .ConfigureAwait(false);
         }
@@ -37,8 +41,9 @@ namespace Fisioterapia.Data.Repository
             return await Db.Condutas
                 .Include(c => c.CondutaTratamentos)
                 .ThenInclude(ct => ct.Tratamento)
-                .AsNoTracking()
                 .Where(c => c.CondutaTratamentos.Any(ct => ct.TratamentoId.Equals(tratamentoId)))
+                .OrderByDescending(c => c.DataConduta)
+                .AsNoTracking()
                 .ToListAsync()
                 .ConfigureAwait(false);
         }
