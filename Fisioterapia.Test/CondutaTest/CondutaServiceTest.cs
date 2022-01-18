@@ -334,16 +334,12 @@ namespace Fisioterapia.Test.CondutaTest
             mocker.GetMock<ITratamentoRepository>()
                 .Setup(c => c.ObterPorId(tratamento.Id).Result)
                 .Returns(tratamento);
-            mocker.GetMock<ICondutaRepository>()
-                .Setup(c => c.ObterCondutasPorTratamentoId(tratamento.Id).Result)
-                .Returns(_condutaServiceTestsFixture.ObterCondutasPorTratamento(tratamento.Id));
 
             //Act
             var result = condutaService.RemoverTratamento(tratamento.Id);
 
             //Assert
-            mocker.GetMock<INotificador>().Verify(a => a.Handle(It.IsAny<Notificacao>()), Times.Once);
-            mocker.GetMock<ITratamentoRepository>().Verify(r => r.Remover(tratamento), Times.Never);
+            mocker.GetMock<ITratamentoRepository>().Verify(r => r.Remover(tratamento), Times.Once);
         }
     }
 }
