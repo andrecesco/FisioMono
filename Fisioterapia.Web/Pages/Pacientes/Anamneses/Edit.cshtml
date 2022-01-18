@@ -1,4 +1,4 @@
-@page
+﻿@page
 @model Fisioterapia.Web.Pages.Pacientes.Anamneses.EditModel
 
 @{
@@ -31,7 +31,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="AnamneseViewModel.PressaoAlta" class="control-label"></label>
-                <input asp-for="AnamneseViewModel.PressaoAlta" class="form-control" />
+                <radio-button radio-id="PressaoAlta" radio-name="PressaoAltaRadio" radio-for="PressaoAlta" radio-options="Sim;Não;Não sei" radio-value-checked="@Model.PressaoAltaRadio"></radio-button>
                 <span asp-validation-for="AnamneseViewModel.PressaoAlta" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -41,7 +41,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="AnamneseViewModel.PraticaAtividadeFisica" class="control-label"></label>
-                <input asp-for="AnamneseViewModel.PraticaAtividadeFisica" class="form-control" />
+                <radio-button radio-id="PraticaAtividadeFisica" radio-name="PraticaAtividadeFisicaRadio" radio-for="PraticaAtividadeFisica" radio-options="Sim;Não;Não sei" radio-value-checked="@Model.PraticaAtividadeFisicaRadio"></radio-button>
                 <span asp-validation-for="AnamneseViewModel.PraticaAtividadeFisica" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -56,7 +56,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="AnamneseViewModel.ConsumeSubstancias" class="control-label"></label>
-                <input asp-for="AnamneseViewModel.ConsumeSubstancias" class="form-control" />
+                <radio-button radio-id="ConsumeSubstancias" radio-name="ConsumeSubstanciasRadio" radio-for="ConsumeSubstancias" radio-options="Sim;Não;Não sei" radio-value-checked="@Model.ConsumeSubstanciasRadio"></radio-button>
                 <span asp-validation-for="AnamneseViewModel.ConsumeSubstancias" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -76,7 +76,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="AnamneseViewModel.ContraturaMuscular" class="control-label"></label>
-                <input asp-for="AnamneseViewModel.ContraturaMuscular" class="form-control" />
+                <radio-button radio-id="ContraturaMuscular" radio-name="ContraturaMuscularRadio" radio-for="ContraturaMuscular" radio-options="Sim;Não;Não sei" radio-value-checked="@Model.ContraturaMuscularRadio"></radio-button>
                 <span asp-validation-for="AnamneseViewModel.ContraturaMuscular" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -86,7 +86,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="AnamneseViewModel.RetracaoMuscular" class="control-label"></label>
-                <input asp-for="AnamneseViewModel.RetracaoMuscular" class="form-control" />
+                <radio-button radio-id="RetracaoMuscular" radio-name="RetracaoMuscularRadio" radio-for="RetracaoMuscular" radio-options="Sim;Não;Não sei" radio-value-checked="@Model.RetracaoMuscularRadio"></radio-button>
                 <span asp-validation-for="AnamneseViewModel.RetracaoMuscular" class="text-danger"></span>
             </div>
             <div class="form-group">

@@ -16,15 +16,13 @@ namespace Fisioterapia.Web.Pages.Condutas
     {
         private readonly ICondutaService _condutaService;
         private readonly ICondutaRepository _condutaRepository;
-        private readonly IPacienteRepository _pacienteRepository;
         private readonly ITratamentoRepository _tratamentoRepository;
         private readonly IMapper _mapper;
 
-        public EditModel(ICondutaService condutaService, ICondutaRepository condutaRepository, IPacienteRepository pacienteRepository, ITratamentoRepository tratamentoRepository, IMapper mapper)
+        public EditModel(ICondutaService condutaService, ICondutaRepository condutaRepository, ITratamentoRepository tratamentoRepository, IMapper mapper)
         {
             _condutaService = condutaService;
             _condutaRepository = condutaRepository;
-            _pacienteRepository = pacienteRepository;
             _tratamentoRepository = tratamentoRepository;
             _mapper = mapper;
         }

@@ -8,10 +8,7 @@ $(document).ready(function () {
                 $('#myModalContent').html('');
                 $('#myModalContent').load(this.href,
                     function () {
-                        $('#myModal').modal({
-                            keyboard: true
-                        },
-                            'show');
+                        $('#myModal').modal('show');
                         bindForm(this);
                     });
                 return false;
@@ -38,6 +35,13 @@ function bindForm(dialog) {
 
         return false;
     });
+
+    $(".close").on("click",
+        function (e) {
+            $('#myModal').modal('hide');
+            return false;
+        }
+    );
 }
 
 function BuscaCep() {

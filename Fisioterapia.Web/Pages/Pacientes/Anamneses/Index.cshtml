@@ -1,4 +1,4 @@
-@page
+﻿@page
 @model Fisioterapia.Web.Pages.Pacientes.Anamneses.IndexModel
 
 @{
@@ -29,9 +29,24 @@
                 <input asp-for="AnamneseViewModel.HPM" class="form-control" />
                 <span asp-validation-for="AnamneseViewModel.HPM" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="AnamneseViewModel.PressaoAlta" class="control-label"></label>
-                <input asp-for="AnamneseViewModel.PressaoAlta" class="form-control" />
+                <radio-button radio-id="PressaoAlta" radio-name="PressaoAlta" radio-for="PressaoAlta" radio-options="Sim;Não;Não sei" radio-value-checked="@Model.AnamneseViewModel.PressaoAlta"></radio-button>
+                @*@if (Model.AnamneseViewModel.PressaoAlta.HasValue)
+        {
+            if (Model.AnamneseViewModel.PressaoAlta.Value)
+            {
+            }
+            else
+            {
+                <radio-button radio-id="PressaoAlta" radio-name="PressaoAlta" radio-for="PressaoAlta" radio-options="Sim;Não;Não sei" radio-value-checked="Não"></radio-button>
+            }
+        }
+        else
+        {
+            <radio-button radio-id="PressaoAlta" radio-name="PressaoAlta" radio-for="PressaoAlta" radio-options="Sim;Não;Não sei" radio-value-checked="Não sei"></radio-button>
+        }*@
                 <span asp-validation-for="AnamneseViewModel.PressaoAlta" class="text-danger"></span>
             </div>
             <div class="form-group">
