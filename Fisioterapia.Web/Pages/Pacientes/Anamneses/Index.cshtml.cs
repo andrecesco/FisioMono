@@ -41,6 +41,21 @@ namespace Fisioterapia.Web.Pages.Pacientes.Anamneses
         [BindProperty]
         public AnamneseViewModel AnamneseViewModel { get; set; }
 
+        [BindProperty]
+        public string PressaoAltaRadio { get; set; }
+
+        [BindProperty]
+        public string PraticaAtividadeFisicaRadio { get; set; }
+
+        [BindProperty]
+        public string ConsumeSubstanciasRadio { get; set; }
+
+        [BindProperty]
+        public string ContraturaMuscularRadio { get; set; }
+
+        [BindProperty]
+        public string RetracaoMuscularRadio { get; set; }
+
         [TempData]
         public string StatusMessage { get; set; }
 
@@ -54,10 +69,40 @@ namespace Fisioterapia.Web.Pages.Pacientes.Anamneses
 
             var anamnese = _mapper.Map<Anamnese>(AnamneseViewModel);
 
+            PreencherPropriedadesBoleans(anamnese);
+
             await _pacienteService.AdicionarAnamnese(anamnese);
 
             StatusMessage = "Anamnase foi adicionada ao paciente com sucesso";
             return RedirectToPage("Edit", new { pacienteId = anamnese.PacienteId, id = anamnese.Id });
+        }
+
+        private void PreencherPropriedadesBoleans(Anamnese anamnese)
+        {
+            if (!string.IsNullOrWhiteSpace(PressaoAltaRadio) && !PressaoAltaRadio.Equals("Não sei"))
+            {
+                anamnese.PressaoAlta = PressaoAltaRadio.Equals("Sim");
+            }
+
+            if (!string.IsNullOrWhiteSpace(PraticaAtividadeFisicaRadio) && !PraticaAtividadeFisicaRadio.Equals("Não sei"))
+            {
+                anamnese.PraticaAtividadeFisica = PraticaAtividadeFisicaRadio.Equals("Sim");
+            }
+
+            if (!string.IsNullOrWhiteSpace(ConsumeSubstanciasRadio) && !ConsumeSubstanciasRadio.Equals("Não sei"))
+            {
+                anamnese.ConsumeSubstancias = ConsumeSubstanciasRadio.Equals("Sim");
+            }
+
+            if (!string.IsNullOrWhiteSpace(ContraturaMuscularRadio) && !ContraturaMuscularRadio.Equals("Não sei"))
+            {
+                anamnese.ContraturaMuscular = ContraturaMuscularRadio.Equals("Sim");
+            }
+
+            if (!string.IsNullOrWhiteSpace(RetracaoMuscularRadio) && !RetracaoMuscularRadio.Equals("Não sei"))
+            {
+                anamnese.RetracaoMuscular = RetracaoMuscularRadio.Equals("Sim");
+            }
         }
     }
 }
