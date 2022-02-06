@@ -10,7 +10,7 @@ namespace Fisioterapia.Web.ViewModels
     {
         public Guid PacienteId { get; set; }
 
-        [DisplayName("Data de Conduta")]
+        [DisplayName("Data")]
         [Required(ErrorMessage = "O campo {0} é obrigatório.")]
         [DataType(DataType.Date)]
         public DateTime? DataConduta { get; set; }

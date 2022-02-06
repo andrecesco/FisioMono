@@ -4,6 +4,7 @@ using Fisioterapia.Web.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Fisioterapia.Web.Pages.Pacientes
@@ -25,6 +26,7 @@ namespace Fisioterapia.Web.Pages.Pacientes
         public async Task OnGetAsync()
         {
             PacientesViewModels = _mapper.Map<IList<PacienteViewModel>>(await _pacienteRepository.ObterTodos());
+            PacientesViewModels = PacientesViewModels.OrderBy(a => a.NomeCompleto).ToList();
         }
     }
 }
